@@ -1,0 +1,12 @@
+{
+    "name": "sleep-system",
+    "version": "0.1.0",
+    "private": true,
+    "description": "助眠服务管理系统",
+    "scripts": {
+        "dev:user": "pnpm --filter user-h5 dev",
+        "dev:admin": "pnpm --filter admin-web dev",
+        "build:user": "pnpm --filter user-h5 build",
+        "build:admin": "pnpm --filter admin-web build"
+    }
+}

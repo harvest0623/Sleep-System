@@ -1,0 +1,15 @@
+:root {
+    --color-primary: #6D4AFF;
+    --color-bg: #F6F5FB;
+    --color-card: #FFFFFF;
+    --color-text: #1B1B2F;
+    --color-text-muted: #6B6880;
+    --color-line: #E9E5F7;
+}
+
+body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}

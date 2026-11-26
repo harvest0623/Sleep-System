@@ -1,0 +1,29 @@
+:root {
+    --color-primary: #6D4AFF;
+    --color-primary-deep: #5232D6;
+    --color-bg: #0E0B1F;
+    --color-card: #1A1630;
+    --color-text: #FFFFFF;
+    --color-text-muted: #9C96BC;
+    --color-line: rgba(255, 255, 255, 0.08);
+    --radius-card: 20px;
+    --radius-btn: 24px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.page {
+    min-height: 100vh;
+    padding: 24px;
+    max-width: 480px;
+    margin: 0 auto;
+}
