@@ -1,29 +1,247 @@
 :root {
-    --color-primary: #6D4AFF;
+    --color-primary: #7C5CFF;
     --color-primary-deep: #5232D6;
-    --color-bg: #0E0B1F;
-    --color-card: #1A1630;
-    --color-text: #FFFFFF;
-    --color-text-muted: #9C96BC;
-    --color-line: rgba(255, 255, 255, 0.08);
-    --radius-card: 20px;
-    --radius-btn: 24px;
+    --color-primary-soft: rgba(124, 92, 255, 0.16);
+    --color-bg: #0B0918;
+    --color-bg-soft: #14102A;
+    --color-card: rgba(255, 255, 255, 0.055);
+    --color-card-strong: rgba(255, 255, 255, 0.09);
+    --color-text: #F5F3FF;
+    --color-text-muted: rgba(245, 243, 255, 0.55);
+    --color-text-faint: rgba(245, 243, 255, 0.32);
+    --color-line: rgba(255, 255, 255, 0.1);
+    --color-success: #4ADE80;
+    --color-danger: #FF6B81;
+    --radius-card: 24px;
+    --radius-input: 16px;
+    --radius-btn: 999px;
+    --shadow-card: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
 }
 
 body {
-    margin: 0;
     background: var(--color-bg);
     color: var(--color-text);
-    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+#app {
+    min-height: 100vh;
 }
 
 .page {
     min-height: 100vh;
-    padding: 24px;
     max-width: 480px;
     margin: 0 auto;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.page::before {
+    content: "";
+    position: fixed;
+    top: -220px;
+    left: 50%;
+    width: 520px;
+    height: 520px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(124, 92, 255, 0.38), transparent 65%);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.page-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.auth-head {
+    padding: 36px 4px 28px;
+}
+
+.auth-eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.auth-title {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 10px;
+    letter-spacing: 0.5px;
+}
+
+.auth-subtitle {
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.glass-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    padding: 24px 20px;
+    backdrop-filter: blur(24px);
+    box-shadow: var(--shadow-card);
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field-label {
+    display: block;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.field-input {
+    width: 100%;
+    height: 52px;
+    border-radius: var(--radius-input);
+    border: 1px solid var(--color-line);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-text);
+    font-size: 15px;
+    padding: 0 16px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.field-input::placeholder {
+    color: var(--color-text-faint);
+}
+
+.field-input:focus {
+    border-color: var(--color-primary);
+    background: rgba(124, 92, 255, 0.08);
+}
+
+.field-row {
+    display: flex;
+    gap: 10px;
+}
+
+.field-row .field-input {
+    flex: 1;
+}
+
+.code-btn {
+    flex: none;
+    height: 52px;
+    padding: 0 16px;
+    border-radius: var(--radius-input);
+    border: 1px solid var(--color-line);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-primary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.code-btn:disabled {
+    color: var(--color-text-faint);
+    cursor: not-allowed;
+}
+
+.code-btn:not(:disabled):active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: var(--radius-btn);
+    background: linear-gradient(120deg, #8B6BFF, #5232D6);
+    color: #fff;
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 14px 30px rgba(109, 74, 255, 0.35);
+    transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.btn-primary:active {
+    transform: translateY(1px) scale(0.99);
+}
+
+.btn-primary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-ghost {
+    width: 100%;
+    height: 50px;
+    border-radius: var(--radius-btn);
+    border: 1px solid var(--color-line);
+    background: transparent;
+    color: var(--color-text);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.auth-foot {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+.auth-foot a {
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-line);
+    padding-bottom: 2px;
+}
+
+.form-tip {
+    min-height: 20px;
+    font-size: 12.5px;
+    color: var(--color-danger);
+    margin: 4px 2px 12px;
+}
+
+.form-tip.ok {
+    color: var(--color-success);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.28s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
 }

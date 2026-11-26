@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(BusinessException.class)
+    public Result<Void> handleBusinessException(BusinessException exception) {
+        return Result.fail(exception.getCode(), exception.getMessage());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Result<Void> handleValidException(MethodArgumentNotValidException exception) {
         String message = exception.getBindingResult().getFieldErrors().stream()

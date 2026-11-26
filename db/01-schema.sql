@@ -95,6 +95,21 @@ CREATE TABLE IF NOT EXISTS app_user (
     UNIQUE KEY uk_user_phone (phone)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = 'C 端用户';
 
+-- 用户睡眠偏好档案（首次建档写入，M2 扩展为完整睡眠档案）
+CREATE TABLE IF NOT EXISTS app_user_profile (
+    id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
+    user_id          BIGINT UNSIGNED NOT NULL COMMENT '用户 ID',
+    sleep_difficulty TINYINT                  DEFAULT NULL COMMENT '入睡困难程度 1-5',
+    latency_minutes  INT                      DEFAULT NULL COMMENT '平均入睡时长（分钟）',
+    wake_periods     VARCHAR(100)             DEFAULT NULL COMMENT '常醒时段，逗号分隔',
+    preferences      VARCHAR(200)             DEFAULT NULL COMMENT '偏好内容类型，逗号分隔',
+    remind_time      VARCHAR(10)              DEFAULT NULL COMMENT '期望提醒时间 HH:mm',
+    created_at       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_profile_user (user_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = '用户睡眠偏好档案';
+
 -- 操作日志
 CREATE TABLE IF NOT EXISTS sys_operation_log (
     id          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
